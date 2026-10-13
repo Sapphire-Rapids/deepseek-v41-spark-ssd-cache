@@ -1,0 +1,16 @@
+{
+  "kv_connector": "OffloadingConnector",
+  "kv_role": "kv_both",
+  "kv_connector_extra_config": {
+    "spec_name": "NodeLocalDiskOffloadingSpec",
+    "spec_module_path": "node_local_disk_offload",
+    "cpu_bytes_to_use": 536870912,
+    "load_ring_bytes": 134217728,
+    "blocks_per_chunk": 1,
+    "pack_groups": [],
+    "disk_max_bytes": 137438953472,
+    "disk_root": "/native-kv-cache",
+    "disk_io_threads": 2,
+    "offload_prompt_only": true
+  }
+}

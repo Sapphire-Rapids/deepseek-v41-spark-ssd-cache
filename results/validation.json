@@ -1,0 +1,269 @@
+{
+  "verified_at": "2026-10-12T23:24:49.040466+00:00",
+  "hardware": "2 x NVIDIA DGX Spark GB10, tensor parallel size 2",
+  "model": {
+    "repository": "manateelazycat/DeepSeek-V4.1-Flash-Uncensored-TensorFold-EXL3",
+    "revision": "c0ce542ae7e4f61d86cbb0225276392912552f1b"
+  },
+  "backend": "vLLM 0.1.dev20904+g179dd0fa9, existing EXL3 community image with native offloading Python backports",
+  "settings": {
+    "context_limit": 262144,
+    "max_num_seqs": 4,
+    "dspark_tokens": 3,
+    "gpu_kv_bytes_per_node": 2684354560,
+    "disk_budget_bytes_per_node": 137438953472,
+    "cpu_staging_bytes_per_node": 536870912,
+    "ring_bytes_in_staging_pool": 134217728,
+    "disk_io_threads_per_node": 2,
+    "disk_ttl_seconds": null,
+    "disk_eviction": "LRU",
+    "offload_prompt_only": true,
+    "prefix_checkpoint_interval_tokens": 4096,
+    "PYTHONHASHSEED": "0",
+    "PYTORCH_CUDA_ALLOC_CONF": "expandable_segments:False"
+  },
+  "validation": {
+    "cpu_preflight": {
+      "status": "passed",
+      "checks": [
+        "bounded disk admission",
+        "LRU eviction",
+        "in-flight load protection",
+        "padded-page disk round trip",
+        "non-cacheable scratch group excluded",
+        "original group index preserved in loads",
+        "DSpark target hit retained",
+        "ordinary eagle miss retained",
+        "excluded draft never loaded",
+        "draft group annotation"
+      ],
+      "environment": "same serving image; CPU-only temporary container; 2 GiB memory limit"
+    },
+    "gpu_disk_byte_roundtrip": {
+      "nodes": 2,
+      "keys_each": 40,
+      "ring_rows": 8,
+      "disk_only_reads": true,
+      "payload_equality": true,
+      "padding_untouched": true
+    },
+    "disk_metadata_before_restart": [
+      {
+        "files": 42156,
+        "bytes": 5827645440,
+        "metadata_sha256": "68e54b2367b5e6b6644d4ef9477308fc28a3cc179e1c81f962ee0fa92c2851a1"
+      },
+      {
+        "files": 42156,
+        "bytes": 5827645440,
+        "metadata_sha256": "68e54b2367b5e6b6644d4ef9477308fc28a3cc179e1c81f962ee0fa92c2851a1"
+      }
+    ],
+    "restart_restore": {
+      "32k": {
+        "ttft_s": 1.1219040069263428,
+        "cached_tokens": 32512,
+        "prompt_tokens": 32624,
+        "correct": true
+      },
+      "128k": {
+        "ttft_s": 2.2014391829725355,
+        "cached_tokens": 130816,
+        "prompt_tokens": 130932,
+        "correct": true
+      },
+      "external_prefix_hits": 163328.0,
+      "CPU_to_GPU_bytes": 1074954240.0
+    },
+    "cold_ttft_seconds": {
+      "32k": 44.78701600502245,
+      "128k": 178.99765490391292
+    },
+    "restored_ttft_seconds": {
+      "32k": 1.1219040069263428,
+      "128k": 2.2014391829725355
+    },
+    "restored_prompt_answers": "both exact identifiers correct",
+    "agent_append": "passed after the 128K SSD restore; 130816 cached tokens",
+    "two_long_cached_requests": "passed for 32624 and 130932 tokens",
+    "tool_call_and_result_roundtrip": "passed",
+    "vision": "passed: one and two 1344x1344 images, JSON Schema",
+    "default_thinking_and_multilingual_response": "passed",
+    "four_concurrent_requests": "passed; observed four active requests",
+    "full_128_GiB_disk_fill_stress_performed": false
+  },
+  "coding_validation": {
+    "same_greedy_benchmark": {
+      "temperature": 0,
+      "top_p": 1,
+      "reasoning_effort": "high",
+      "max_tokens": 4096,
+      "before_median_decode_tps": 37.37025173196644,
+      "after_median_decode_tps": 37.631451769014774,
+      "before_passed": 3,
+      "after_passed": 1,
+      "after_budget_truncated": 2,
+      "note": "One truncated run repeated reasoning. These failed samples were retained; this group is not reported as fully passing."
+    },
+    "cache_salt_isolation": [
+      {
+        "usage": {
+          "prompt_tokens": 659,
+          "total_tokens": 2978,
+          "completion_tokens": 2319,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "created_cache_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 1957
+          }
+        },
+        "finish_reason": "stop",
+        "decode_tps": 36.9130824466599,
+        "validation": {
+          "passed": false,
+          "returncode": 1,
+          "stdout": "",
+          "stderr": "Traceback (most recent call last):\n  File \"/bench/verify_solution.py\", line 76, in <module>\n    check(graph, capacity, oracle(graph, capacity))\n  File \"/bench/verify_solution.py\", line 19, in check\n    assert actual == expected, (graph, capacity, expected, actual)\n           ^^^^^^^^^^^^^^^^^^\nAssertionError: ({'task-002': [], 'task-001': [], 'task-000': ['task-001']}, 2, [['task-001', 'task-002'], ['task-000']], [['task-001', 'task-000'], ['task-002']])\n"
+        },
+        "max_repeated_reasoning_line": 1,
+        "case": "cold-a"
+      },
+      {
+        "usage": {
+          "prompt_tokens": 659,
+          "total_tokens": 2806,
+          "completion_tokens": 2147,
+          "prompt_tokens_details": {
+            "cached_tokens": 576,
+            "created_cache_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 1775
+          }
+        },
+        "finish_reason": "stop",
+        "decode_tps": 36.98804282825356,
+        "validation": {
+          "passed": true,
+          "returncode": 0,
+          "stdout": "{\"passed\": true, \"checks\": 66}\n",
+          "stderr": ""
+        },
+        "max_repeated_reasoning_line": 1,
+        "case": "warm-a"
+      },
+      {
+        "usage": {
+          "prompt_tokens": 659,
+          "total_tokens": 3907,
+          "completion_tokens": 3248,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "created_cache_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 2884
+          }
+        },
+        "finish_reason": "stop",
+        "decode_tps": 37.91582994581465,
+        "validation": {
+          "passed": true,
+          "returncode": 0,
+          "stdout": "{\"passed\": true, \"checks\": 66}\n",
+          "stderr": ""
+        },
+        "max_repeated_reasoning_line": 2,
+        "case": "cold-b"
+      }
+    ],
+    "recommended_sampling": {
+      "temperature": 1,
+      "top_p": 0.95,
+      "reasoning_effort": "high",
+      "max_tokens": 8192,
+      "cases": [
+        {
+          "usage": {
+            "prompt_tokens": 659,
+            "total_tokens": 3641,
+            "completion_tokens": 2982,
+            "prompt_tokens_details": {
+              "cached_tokens": 576,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 2617
+            }
+          },
+          "finish_reason": "stop",
+          "decode_tps": 32.37725056957889,
+          "validation": {
+            "passed": true,
+            "returncode": 0,
+            "stdout": "{\"passed\": true, \"checks\": 66}\n",
+            "stderr": ""
+          },
+          "max_repeated_reasoning_line": 2,
+          "case": "cached-seed4108"
+        },
+        {
+          "usage": {
+            "prompt_tokens": 659,
+            "total_tokens": 1658,
+            "completion_tokens": 999,
+            "prompt_tokens_details": {
+              "cached_tokens": 576,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 564
+            }
+          },
+          "finish_reason": "stop",
+          "decode_tps": 40.34587380847926,
+          "validation": {
+            "passed": true,
+            "returncode": 0,
+            "stdout": "{\"passed\": true, \"checks\": 66}\n",
+            "stderr": ""
+          },
+          "max_repeated_reasoning_line": 2,
+          "case": "cached-seed4109"
+        },
+        {
+          "usage": {
+            "prompt_tokens": 659,
+            "total_tokens": 2216,
+            "completion_tokens": 1557,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "created_cache_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 1161
+            }
+          },
+          "finish_reason": "stop",
+          "decode_tps": 35.614052963823916,
+          "validation": {
+            "passed": true,
+            "returncode": 0,
+            "stdout": "{\"passed\": true, \"checks\": 66}\n",
+            "stderr": ""
+          },
+          "max_repeated_reasoning_line": 1,
+          "case": "cold-seed4110"
+        }
+      ],
+      "passed": 3,
+      "cached_cases": 2,
+      "uncached_cases": 1
+    },
+    "interpretation": "No consistent cache-hit-induced failure was reproduced in the isolation checks: one uncached run generated incorrect scheduling code, while a cached run passed. Recommended-sampling checks all passed. This is not proof of identical generated quality across configurations; global sampling settings were not changed."
+  },
+  "coverage_note": "SSD reload was exercised up to 130932 prompt tokens; configured context ceiling remains 262144. GPU I/O test forced 40 disk-only keys through an 8-row ring. Four full-size contexts were not tested concurrently.",
+  "measurement_note": "TTFT starts after the server is ready. Restarted GPU/CPU processes do not imply a machine reboot or a global OS page-cache flush. Each timing is one measured replay, not a statistical benchmark."
+}

@@ -1,0 +1,14 @@
+{
+  "source_logic_matches_tested_copy": true,
+  "overlay_files": 8,
+  "python_syntax": "passed",
+  "json": "passed",
+  "private_identifier_scan": "passed",
+  "derived_image_build": "passed on the tested arm64 serving base",
+  "cpu_preflight_in_packaged_image": "passed in a disposable container with 2 GiB memory and no GPU devices",
+  "full_service_restart_with_derived_image": "not performed; original file-mount deployment was measured",
+  "gpu_test_logic_matches_original": true,
+  "checked_at": "2026-10-13T03:37:30.400377+00:00",
+  "installer_apply_and_verify": "passed; all eight source files checked",
+  "build_note": "BASE_IMAGE is required; Docker reports InvalidDefaultArgInFrom without a default. The documented explicit build argument was used."
+}

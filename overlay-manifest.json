@@ -1,0 +1,50 @@
+[
+  {
+    "path": "vllm/v1/kv_cache_interface.py",
+    "before_sha256": "f1a63db8d1404d8e8998e70f3a373e8e93d159e62be6dc108d0840a9ce0accf3",
+    "after_sha256": "52587c5e059079738c1cb4494f76949d511c9e300b2ddb9ae1100787d85ab5be",
+    "tested_sha256": "3e83c8d61f2a8f41567f631d07fe5986c0046c1c9f0670ff4f64c3fe7a168ca4"
+  },
+  {
+    "path": "vllm/config/speculative.py",
+    "before_sha256": "537622adc72d954a8ffe9076bc09c231d008f0cc89e6786d0d40300e70775a5d",
+    "after_sha256": "1310449424fcb6179865c4d9c45c69ebc09dbeeeca61c96706a5d2a54a02eba6",
+    "tested_sha256": "be1f16a1981d830c61c35f4fb1facd5adb6a0606b01b45d1064de79331bcfb51"
+  },
+  {
+    "path": "vllm/distributed/kv_transfer/kv_connector/v1/offloading/config.py",
+    "before_sha256": "6d9df9f4996b5389ec0f30c58e89629cefb5d74619a35c9ea555f9997f7bf5db",
+    "after_sha256": "1424800830e94c8af85273e7c0be991d7d2cf7c375ea4d333f4cafa0aedb8bf3",
+    "tested_sha256": "e3e6bb7907ef501580cf8e6c65ea817d7286447667137b4aa5a73d1c588e50a4"
+  },
+  {
+    "path": "vllm/distributed/kv_transfer/kv_connector/v1/offloading/scheduler.py",
+    "before_sha256": "6b1f32f7bb311217debdececf44403f110b4eedfed8ba880c4edc40d6ed27431",
+    "after_sha256": "6315c5c8f80002affead6d734246739b14c884f2af987e5d12538eacb0bc74b6",
+    "tested_sha256": "9f47d2c349f08f8329aef07abd8c380b0ad852383444b5972f9df5de6639b753"
+  },
+  {
+    "path": "vllm/v1/kv_offload/config.py",
+    "before_sha256": "12fe8541a3436625eee29e743a78f7da8ef36eaa09179a73dc9a3ed359c5500f",
+    "after_sha256": "fc782a80ee56d1966631899761a9d05669688e08a97081e4d3049d08f3038fef",
+    "tested_sha256": "97ecf0a0953e70208d55c95b26e2b85ebd6ee89995f800f3da0a1b0ba29b0d43"
+  },
+  {
+    "path": "vllm/v1/kv_offload/base.py",
+    "before_sha256": "1152f2e5744cb886ca14739f227a1610115d1389e365fce18e254ce8e7776e8f",
+    "after_sha256": "3ac8ceec54f483e12342b3ffb63bebc7f80494e38dbf715361ce0c001a1be6fd",
+    "tested_sha256": "f0e9df7bc6b26bc267eeab7792e229d426f42cc342a6376299afe87383dd08f0"
+  },
+  {
+    "path": "vllm/v1/core/kv_cache_coordinator.py",
+    "before_sha256": "d7bbe8cd7d9fc1aa639fba5c5a4445fa23601394ff4fa9f2aeaac9606e78352c",
+    "after_sha256": "c0ccb7db3f1c1d202fea96736f846c8ead54a2402086fda5d766e4d1ada4d6b7",
+    "tested_sha256": "e5f63b51f5c61e8c515366c265e748a10b13cdddb456901d55084b462509cc96"
+  },
+  {
+    "path": "vllm/v1/core/kv_cache_utils.py",
+    "before_sha256": "0c4b312712598930d2dbdcf917c511de73fe531dd009f5b200e3c945b009bafe",
+    "after_sha256": "abe67e89e4f21b1fd63250c4a6d4b128f9744307402f6df99d1a0d90c4774218",
+    "tested_sha256": "3d97680d4dfb836749dbe4b0a391c53ea9ccf134676f6ef42b167c7de0a44d12"
+  }
+]
